@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TP_1 Ciclos</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400&display=swap" rel="stylesheet"> 
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Ubuntu', sans-serif;
+        }
+        body {
+            background: #eee;
+        }
+        h1 {
+            padding-top: 30px;
+            text-align: center;
+            font-size: 40px;
+        }
+        body > h2 {
+            text-align: center;
+            font-size: 30px;
+        }
+        .input-cards {
+            width: 100%;
+            padding: 20px 50px;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 30px;
+        }
+        .input-cards input {
+            width: 100%;
+            max-width: 300px;
+            height: 40px;
+            padding: 0 20px;
+            border-radius: 20px;
+            border: 2px solid #0009;
+            font-size: 20px;
+            outline: none;
+        }
+        .input-cards label {
+            color: #0009;
+        }
+        .section-cards {
+            width: 100%;
+            padding: 20px 80px;
+
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }  
+        .section-cards > div {
+            height: fit-content;
+            background: #fff;
+            border-radius: 8px;
+            padding: 10px;
+            padding-bottom: 20px;
+            box-shadow: 0 4px 4px #0009;
+
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .card-img {
+            width: 100%;
+            aspect-ratio: 16/9;
+            background: #fff;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+        .card-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <h1>Coder House - JavaScript</h1>
+    <h2>- Bucles -</h2>
+    
+    <section class="input-cards">
+        <label for="cantNoti">Ingrese la cantidad de cards a mostrar:</label>
+        <input type="text" id="cantNoti" onchange="crearCards(this.value)">
+    </section>
+
+    <!-- Acá agrego las cards creadas dinámicamente -->
+    <section class="section-cards"></section>
+    
+    <script>
+        let imgs = [
+            'https://desinformemonos.org/wp-content/uploads/2018/09/selva_ok.jpg',
+            'https://blogs.iadb.org/sostenibilidad/wp-content/uploads/sites/26/2021/04/Recuperacion-del-COVID-inversion-en-naturaleza.jpg',
+            'https://paginav.cl/wp-content/uploads/2021/01/image1170x530cropped-8.jpg',
+            'https://mapasymochila.com/wp-content/uploads/2021/01/ama-dablam2-most-beautiful-mountains-in-the-world.jpg',
+            'https://geographical.co.uk/media/k2/items/cache/e533c4b8d2d2d3798f3271c35ca6e050_XL.jpg'
+        ]
+        
+        const sectionCards = document.querySelector('.section-cards')
+
+        function crearCards(cantidad) {
+            sectionCards.innerText = ''
+
+            for (let i = 0; i < cantidad; i++) {
+                let random = Math.floor(Math.random() * imgs.length)
+                
+                sectionCards.innerHTML += `
+                <div>
+                    <div class="card-img">
+                        <img src="${imgs[random]}" alt="">
+                    </div>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus suscipit nobis aperiam dignissimos amet rerum rem explicabo placeat nesciunt vero?</p>
+                </div>`
+            }
+        }
+    </script>
+</body>
+</html>
