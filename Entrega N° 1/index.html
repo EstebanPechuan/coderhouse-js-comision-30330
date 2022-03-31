@@ -98,7 +98,13 @@
     <!-- Acá agrego las cards creadas dinámicamente -->
     <section class="section-cards"></section>
     
+
+
     <script>
+        // Valor que me servirá a la hora que crear el bucle WHILE
+        let valorInput
+
+        
         let imgs = [
             'https://desinformemonos.org/wp-content/uploads/2018/09/selva_ok.jpg',
             'https://blogs.iadb.org/sostenibilidad/wp-content/uploads/sites/26/2021/04/Recuperacion-del-COVID-inversion-en-naturaleza.jpg',
@@ -122,6 +128,24 @@
                     </div>
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus suscipit nobis aperiam dignissimos amet rerum rem explicabo placeat nesciunt vero?</p>
                 </div>`
+            }
+            
+            bucleWhile(cantidad)
+        }
+
+
+        // No estoy seguro si hay que hacer un sólo bucle, o los dos.
+        // Por si acaso acá dejo el bucle WHILE
+        function bucleWhile(cantidad) {
+            let contadorAuxiliar = 0
+
+            while (cantidad > 0) {
+                contadorAuxiliar++
+                console.log(`Cantidad de cards: ${contadorAuxiliar}`)
+
+                if(contadorAuxiliar > cantidad - 1) {
+                    break
+                }
             }
         }
     </script>
