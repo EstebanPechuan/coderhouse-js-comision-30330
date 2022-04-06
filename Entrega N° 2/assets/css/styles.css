@@ -25,7 +25,10 @@ header {
     width: 100%;
     height: 80px;
     padding: 0 80px;
-    background: #0004;
+    background: #ccc;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 4px 4px #0004;
 
     display: flex;
     justify-content: space-between;
