@@ -1,3 +1,4 @@
+// Elementos de HTML a usar en JS
 const carrito = document.querySelector('.carrito')
 const secCompra = document.querySelector('.seccion-compra')
 const divCompra = document.querySelector('.div-compra')
@@ -5,15 +6,18 @@ const close = document.querySelector('.close')
 const numberBox = document.querySelector('.number-box')
 const divPrecioTotal = document.querySelector('.precio-total')
 
+// Contadores
 let contCarrito = 0
 let precioTotal = 0
 
+// Boton para abrir zona de la derecha
 carrito.addEventListener('click', () => {
     secCompra.classList.add('seccion-compra-click')
     divCompra.classList.add('div-compra-click')
     divPrecioTotal.classList.add('precio-total-click')
 })
 
+// Boton para cerrar zona de la derecha
 function closeCompra() {
     secCompra.classList.remove('seccion-compra-click')
     divCompra.classList.remove('div-compra-click')
@@ -42,7 +46,6 @@ function eliminar(boton_eliminar) {
         impTotal.innerText = precioTotal        
     }
 }
-
 
 // Acá genero el componente que se agregará en la sección del carrito
 function agregar(boton_agregar) {
@@ -82,6 +85,7 @@ function agregar(boton_agregar) {
     divCompra.innerHTML += addCard
 }
 
+// Cerrar zona de la derecha, sólo si se clickea en la parte negra de la pantalla
 secCompra.addEventListener('click', (e) => {
     console.log(e.target);
 
