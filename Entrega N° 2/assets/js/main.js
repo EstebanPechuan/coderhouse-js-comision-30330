@@ -1,0 +1,91 @@
+const carrito = document.querySelector('.carrito')
+const secCompra = document.querySelector('.seccion-compra')
+const divCompra = document.querySelector('.div-compra')
+const close = document.querySelector('.close')
+const numberBox = document.querySelector('.number-box')
+const divPrecioTotal = document.querySelector('.precio-total')
+
+let contCarrito = 0
+let precioTotal = 0
+
+carrito.addEventListener('click', () => {
+    secCompra.classList.add('seccion-compra-click')
+    divCompra.classList.add('div-compra-click')
+    divPrecioTotal.classList.add('precio-total-click')
+})
+
+function closeCompra() {
+    secCompra.classList.remove('seccion-compra-click')
+    divCompra.classList.remove('div-compra-click')
+    divPrecioTotal.classList.remove('precio-total-click')
+}
+
+function eliminar(event) {
+    if(confirm('Desea eliminar este elemnto del carrito?')) {
+        divCompra.removeChild(event.parentElement)
+
+        contCarrito--
+        if (contCarrito != 0) {
+            numberBox.classList.remove('d-none')
+            numberBox.innerText = contCarrito
+        } else {
+            numberBox.classList.add('d-none')
+        }
+
+        let cardPadre = event.parentElement
+        let precio = cardPadre.children[1].children[1].children[0].textContent
+        let impTotal = document.querySelector('#totalPrice span')
+        
+        precioTotal -= parseInt(precio)
+        console.log(precio);
+        impTotal.innerText = precioTotal
+        
+    }
+}
+
+function agregar(event) {
+    contCarrito++
+    if (contCarrito != 0) {
+        numberBox.classList.remove('d-none')
+        numberBox.innerText = contCarrito
+    } else {
+        numberBox.classList.add('d-none')
+    }
+    
+    let cardPadre = event.parentElement
+    let titulo = cardPadre.children[0].textContent
+    let srcImg = cardPadre.children[1].children[0].getAttribute('src')
+    let precio = cardPadre.children[2].children[0].textContent
+    let impTotal = document.querySelector('#totalPrice span')
+
+    precioTotal += parseInt(precio)
+    console.log(precioTotal);
+    impTotal.innerText = precioTotal
+
+    let addCard =
+        `<div class="card-compra">
+            <div class="compra-img">
+            <img src="${srcImg}" alt="">
+            </div>
+            <div class="compra-info">
+            <h3>${titulo}</h3>
+            <p>Precio: $<span>${precio}</span></p>
+            </div>
+            
+            <button class="eliminar-compra" onclick="eliminar(this)">
+            <box-icon name='trash-alt'></box-icon>
+            </button>
+        </div>`
+    
+    divCompra.innerHTML += addCard
+}
+
+secCompra.addEventListener('click', (e) => {
+    console.log(e.target);
+
+    if (e.target == secCompra) {
+        secCompra.classList.remove('seccion-compra-click')
+        divCompra.classList.remove('div-compra-click')
+        divPrecioTotal.classList.remove('precio-total-click')
+    }
+})

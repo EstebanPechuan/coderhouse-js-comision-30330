@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador Interactivo</title>
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+    
+    <header>
+        <div class="title">Esteban Pechuan</div>
+
+        <div class="carrito">
+            <box-icon type='solid' name='cart'></box-icon>
+            <div class="number-box d-none"></div>
+        </div>
+    </header>
+
+    <h1>Sistema Interactivo</h1>
+
+    <main class="main-catalogo">
+        <section class="catalogo container">
+            <div class="cards-catalogo">
+                <div class="card">
+                    <h3>Producto 1</h3>
+                    <div class="card-img">
+                        <img src="" alt="">
+                    </div>
+                    <div class="card-precio">
+                        Precio: $<span>500</span>
+                    </div>
+                    <button onclick="agregar(this)">Agregar al carrito</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Producto 2</h3>
+                    <div class="card-img">
+                        <img src="" alt="">
+                    </div>
+                    <div class="card-precio">
+                        Precio: $<span>1500</span>
+                    </div>
+                    <button onclick="agregar(this)">Agregar al carrito</button>
+                </div>
+    
+                <div class="card">
+                    <h3>Producto 3</h3>
+                    <div class="card-img">
+                        <img src="" alt="">
+                    </div>
+                    <div class="card-precio">
+                        Precio: $<span>700</span>
+                    </div>
+                    <button onclick="agregar(this)">Agregar al carrito</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Producto 4</h3>
+                    <div class="card-img">
+                        <img src="" alt="">
+                    </div>
+                    <div class="card-precio">
+                        Precio: $<span>300</span>
+                    </div>
+                    <button onclick="agregar(this)">Agregar al carrito</button>
+                </div>
+                
+                <div class="card">
+                    <h3>Producto 5</h3>
+                    <div class="card-img">
+                        <img src="" alt="">
+                    </div>
+                    <div class="card-precio">
+                        Precio: $<span>600</span>
+                    </div>
+                    <button onclick="agregar(this)">Agregar al carrito</button>
+                </div>
+    
+                <div class="card">
+                    <h3>Producto 6</h3>
+                    <div class="card-img">
+                        <img src="" alt="">
+                    </div>
+                    <div class="card-precio">
+                        Precio: $<span>1400</span>
+                    </div>
+                    <button onclick="agregar(this)">Agregar al carrito</button>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="seccion-compra">
+            <div class="div-compra">
+                <div class="close" onclick="closeCompra()">&#10006;</div>
+
+                
+                <!-- Acá se agregan los productos comprados -->
+                
+            </div>
+            <div class="precio-total">
+                <p>El Precio Total es de:</p>
+                <p id="totalPrice">$<span>---</span></p>
+            </div>
+        </section>
+    </main>
+
+    
+
+    <!-- BoxIcons -->
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
