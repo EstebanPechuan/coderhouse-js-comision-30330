@@ -20,9 +20,10 @@ function closeCompra() {
     divPrecioTotal.classList.remove('precio-total-click')
 }
 
-function eliminar(event) {
+// Acá elimino los elementos del carrito, a través del botón 
+function eliminar(boton_eliminar) {
     if(confirm('Desea eliminar este elemnto del carrito?')) {
-        divCompra.removeChild(event.parentElement)
+        divCompra.removeChild(boton_eliminar.parentElement)
 
         contCarrito--
         if (contCarrito != 0) {
@@ -32,18 +33,19 @@ function eliminar(event) {
             numberBox.classList.add('d-none')
         }
 
-        let cardPadre = event.parentElement
+        let cardPadre = boton_eliminar.parentElement
         let precio = cardPadre.children[1].children[1].children[0].textContent
         let impTotal = document.querySelector('#totalPrice span')
         
         precioTotal -= parseInt(precio)
         console.log(precio);
-        impTotal.innerText = precioTotal
-        
+        impTotal.innerText = precioTotal        
     }
 }
 
-function agregar(event) {
+
+// Acá genero el componente que se agregará en la sección del carrito
+function agregar(boton_agregar) {
     contCarrito++
     if (contCarrito != 0) {
         numberBox.classList.remove('d-none')
@@ -52,7 +54,7 @@ function agregar(event) {
         numberBox.classList.add('d-none')
     }
     
-    let cardPadre = event.parentElement
+    let cardPadre = boton_agregar.parentElement
     let titulo = cardPadre.children[0].textContent
     let srcImg = cardPadre.children[1].children[0].getAttribute('src')
     let precio = cardPadre.children[2].children[0].textContent
