@@ -8,15 +8,25 @@ const divPrecioTotal = document.querySelector('.precio-total')
 const catalogo = document.querySelector('.cards-catalogo')
 
 // Arreglos con la información para mapear los productos del catálogo
-const tituloProductos = ['Producto 1', 'Producto 2', 'Producto 3']
+const tituloProductos = [
+    'Producto 1',
+    'Producto 2',
+    'Producto 3'
+]
 
-const imgProductos = ['https://d368r8jqz0fwvm.cloudfront.net/6743-product_lg/gorra-df-009.jpg', 'https://www.ogdistinciones.com.ar/fotos_productos/14265_3.jpg', 'https://d22fxaf9t8d39k.cloudfront.net/192a25d4c3df7071cd405471507313350ff3bc275bdc4a8996a7b1eb5de1b5f983402.jpeg']
+const imgProductos = [
+    'https://d368r8jqz0fwvm.cloudfront.net/6743-product_lg/gorra-df-009.jpg',
+    'https://www.ogdistinciones.com.ar/fotos_productos/14265_3.jpg',
+    'https://d22fxaf9t8d39k.cloudfront.net/192a25d4c3df7071cd405471507313350ff3bc275bdc4a8996a7b1eb5de1b5f983402.jpeg'
+]
 
-const precioProductos = [500, 1500, 700]
-
+const precioProductos = [
+    500, 
+    1500, 
+    700
+]
 
 // Imprimir los productos en en pantalla
-
 for (let i = 0; i < tituloProductos.length; i++) {
     const element = `
     <div class="card">
