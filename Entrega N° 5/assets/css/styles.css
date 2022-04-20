@@ -1,0 +1,235 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.d-block {
+    display: block;
+}
+
+.container {
+    width: 100%;
+    padding: 20px 80px;
+}
+
+header {
+    width: 100%;
+    height: 80px;
+    padding: 0 80px;
+    background: #ccc;
+    position: sticky;
+    top: 0;
+    box-shadow: 0 4px 4px #0004;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header .title {
+    font-size: 30px;
+}
+
+header .carrito {
+    padding: 5px;
+    background: #0004;
+    border-radius: 50%;
+    position: relative;
+    cursor: pointer;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header .number-box {
+    width: 20px;
+    height: 20px;
+    background: rgb(236, 30, 30);
+    border-radius: 50%;
+    position: absolute;
+    bottom: -5px;
+    left: -5px;
+    color: #fff;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+body h1 {
+    font-size: 40px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.cards-catalogo {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 40px;
+}
+
+.card {
+    padding: 20px 30px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 0 4px #0004;
+
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.card h3 {
+    font-size: 20px;
+    text-align: center;
+}
+
+.card .card-img {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    background: #ccc;
+}
+
+.card .card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.card button {
+    width: 100%;
+    max-width: 150px;
+    line-height: 30px;
+    background: darkorange;
+    color: #fff;
+    text-align: center;
+    border: none;
+    cursor: pointer;
+}
+
+
+.seccion-compra {
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    right: 0;
+    background: transparent;
+    z-index: -1;
+    transition: 0.4s;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.seccion-compra-click {
+    background: #0009;
+    z-index: 100;
+}
+
+.seccion-compra .div-compra {
+    width: 350px;
+    height: calc(100% - 150px);
+    padding: 60px 20px;
+    position: absolute;
+    top: 0;
+    right: -350px;
+    background: #fff;
+    transition: 0.4s;
+    overflow-y: scroll;
+}
+
+.seccion-compra .div-compra-click {
+    right: 0;
+}
+
+.seccion-compra .div-compra .close {
+    position: absolute;
+    top: 10px;
+    left: 20px;
+    font-size: 30px;
+    cursor: pointer;
+}
+
+
+
+.card-compra {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #000;
+    margin-bottom: 20px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.card-compra .compra-img {
+    width: 60px;
+    height: 60px;
+    background: #ccc;
+}
+
+.card-compra .compra-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+}
+
+.card-compra .compra-info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-right: auto;
+}
+
+.card-compra .compra-info h3 {
+    font-size: 24px;
+}
+
+.card-compra .eliminar-compra {
+    border: none;
+    width: 30px;
+    height: 30px;
+    background: rgb(221, 69, 69);
+    cursor: pointer;
+}
+
+.seccion-compra .precio-total {
+    width: 350px;
+    height: 150px;
+    padding: 20px 30px;
+    background: #fff;
+    position: absolute;
+    right: -350px;
+    bottom: 0;
+    box-shadow: 0 -4px 4px #0004;
+    transition: 0.4s;
+}
+
+.seccion-compra .precio-total-click {
+    right: 0;
+}
+
+#totalPrice {
+    width: 100%;
+    margin-top: 20px;
+    text-align: center;
+    font-size: 30px;
+    display: block;
+}
