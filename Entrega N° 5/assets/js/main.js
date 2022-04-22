@@ -36,7 +36,7 @@ productos.push(prod3)
 
 // NOTA:
 // En próximas entregas la instanción y el pusheo estarán en una función.
-// Esto me permitirá poner un botón para agregar un producto nuevo cuando usuario lo necesite.
+// Esto me permitirá poner un botón para agregar un producto nuevo cuando el usuario lo necesite.
 
 // Imprimir los productos en en pantalla
 for (let i = 0; i < productos.length; i++) {
@@ -76,11 +76,13 @@ function closeCompra() {
 }
 
 // Acá elimino los elementos del carrito, a través del botón 
-function eliminar(boton_eliminar) {
+function eliminar(boton_eliminar, id) {    
     if(confirm('Desea eliminar este elemento del carrito?')) {
         divCompra.removeChild(boton_eliminar.parentElement)
 
-        contCarrito--
+        // Descuenta unidades en icono de carrito
+        contCarrito -= productos[id-1].cantidad
+
         if (contCarrito != 0) {
             numberBox.classList.remove('d-none')
             numberBox.innerText = contCarrito
@@ -88,27 +90,23 @@ function eliminar(boton_eliminar) {
             numberBox.classList.add('d-none')
         }
 
-        let cardPadre = boton_eliminar.parentElement
-        let precio = cardPadre.children[1].children[1].children[0].textContent
         let impTotal = document.querySelector('#totalPrice span')
         
-        precioTotal -= parseInt(precio)
-        console.log(precio);
-        impTotal.innerText = precioTotal        
+        precioTotal -= parseInt(productos[id-1].cantidad * productos[id-1].price)
+        impTotal.innerText = precioTotal
     }
 }
 
 // Acá genero el componente que se agregará en la sección del carrito
 function agregar(id) {    
+    contCarrito++
+
     if (!productosCarrito.includes(productos[id-1])) {
         productosCarrito.push(productos[id-1])
-        contCarrito++
-
 
         divCompra.innerHTML = `
             <div class="close" onclick="closeCompra()">&#10006;</div>
         `
-
 
         divCompra.innerHTML = ''
         for (let i = 0; i < productosCarrito.length; i++) {
@@ -128,7 +126,7 @@ function agregar(id) {
                         <span>${productosCarrito[i].cantidad}</span>
                     </div>
         
-                    <button class="eliminar-compra" onclick="eliminar(this)">
+                    <button class="eliminar-compra" onclick="eliminar(this, ${productosCarrito[i].id})">
                         <box-icon name='trash-alt'></box-icon>
                     </button>
                 </div>`
