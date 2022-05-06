@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap" rel="stylesheet"> 
+
+    <!-- BoxIcons -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+    <header class="container">
+        <div class="header__logo">
+            <a href="./index.html">LOGO</a>
+        </div>
+        <nav class="header__menu">
+            <ul>
+                <li><a href="./index.html">Inicio</a></li>
+                <li><a href="./favoritos.html">Favoritos</a></li>
+            </ul>
+        </nav>
+        <div class="header__cart">
+            <a href="#c">
+                <i class='bx bxs-cart'></i>
+                <span class="cart__cantidad d-flex-center d-none"></span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="catalogo">
+            <h3>Favoritos</h3>
+            <div class="catalogo__favoritos container">
+                
+                <!-- PRODUCTOS QUE VIENEN DE UN ARRAY GENERADO EN JS -->
+                
+            </div>
+        </div>
+    </main>
+
+
+    <script src="./js/main.js"></script>
+    <script src="./js/favoritos.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compras</title>
+
+    <!-- BoxIcons -->
+    <link href='https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css' rel='stylesheet'>
+
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="./css/style.css">
+
+</head>
+<body>
+    <header class="container">
+        <div class="header__logo">
+            <a href="#">LOGO</a>
+        </div>
+        <nav class="header__menu">
+            <ul>
+                <li><a href="./index.html">Inicio</a></li>
+                <li><a href="./favoritos.html">Favoritos</a></li>
+            </ul>
+        </nav>
+        <div class="header__cart">
+            <a href="#c">
+                <img src="img/cart.svg" alt="" style="display: block;">
+                <span class="cart__cantidad d-flex-center d-none"></span>
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <div class="hero">
+            <div class="hero__publicidad">
+                <img src="./img/hero.PNG" alt="">
+            </div>
+        </div>
+        <div class="catalogo">
+            <h3>Productos</h3>
+            <div class="catalogo__productos container">
+                
+                <!-- PRODUCTOS QUE VIENEN DE UN ARRAY GENERADO EN JS -->
+                
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© Copyright - Desarrollado por <span>Esteban Pechuan</span></p>
+    </footer>
+
+    <script src="js/favoritos.js"></script>
+    <script src="./js/main.js"></script>
+</body>
+</html>
