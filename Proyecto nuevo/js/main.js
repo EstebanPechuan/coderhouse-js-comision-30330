@@ -88,29 +88,33 @@ let corazon = document.querySelectorAll('.fav')
 
 function favActivo(e, id) {
     let favoritoActivo
-    e.children[0].classList.toggle('d-none')
-    favoritoActivo = e.children[1].classList.toggle('d-none');
+    let elementoClickeado = e.parentElement.parentElement.parentElement
+    console.log(elementoClickeado);
+    favoritoActivo = e.children[0].classList.toggle('d-none')
+    e.children[1].classList.toggle('d-none');
 
-    agregarFavorito(favoritoActivo, id)
+    productosEnPagina[id].favorito = favoritoActivo
+
+    agregarFavorito(favoritoActivo, elementoClickeado, id)
 }
 
 // === ACÁ AGREGO LOS ELEMENTOS CON CORAZÓN A UN ARRAY PARA FAVORITOS
-function agregarFavorito(favoritoActivo, id) {
+function agregarFavorito(favoritoActivo, elementoClickeado, id) {
 
-    if (!favoritoActivo) {
+    if (favoritoActivo) {
         productosEnFavoritos.push(productosEnPagina[id])
-        productosEnPagina[id].favorito = true
-        
-        // Agrego a localstorage los favoritos
-        localStorage.setItem('productosFavoritos', JSON.stringify(productosEnFavoritos))
 
-        console.log(productosEnFavoritos);
+        // console.log(productosEnFavoritos);
     } else {
-        let posicionEnArray = productosEnFavoritos.indexOf(productosEnPagina[id])
+        let posicionEnArray = productosEnFavoritos.indexOf(productosEnFavoritos[id])
         productosEnFavoritos.splice(posicionEnArray, 1)
-        console.log(productosEnFavoritos);
-        productosEnPagina[id].favorito = false        
-        // Agrego a localstorage los favoritos sin los productos eliminados
-        localStorage.setItem('productosFavoritos', JSON.stringify(productosEnFavoritos))
+
+        elementoClickeado.classList.add('removeCard')
+        setTimeout(() => {
+            elementoClickeado.style.display = 'none'
+        }, 1000)
     }
+
+    // Agrego a localstorage los favoritos
+    localStorage.setItem('productosFavoritos', JSON.stringify(productosEnFavoritos))
 }
