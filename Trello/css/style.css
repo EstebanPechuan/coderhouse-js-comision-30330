@@ -120,3 +120,11 @@ body {
   background: #ddd;
   color: #000;
 }
+
+.btn-guardar {
+  background: rgb(63, 144, 242);
+  color: #fff;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+}
