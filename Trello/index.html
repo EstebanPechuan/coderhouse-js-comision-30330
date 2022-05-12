@@ -13,67 +13,75 @@
     <section class="tablero" id="tablero">
         <div class="tablero__lista">
             <div class="titulo__lista">
-                <p>Section 1</p>
+                <input type="text" placeholder="Lista de tareas">
             </div>
 
             <div class="tareas" id="tareas1">
-                <div class="tarea">
-                    <h2>Título 1</h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
+                    <input class="titulo__tarea" type="text" placeholder="Titulo tarea">
+                    <textarea class="descripcion__tarea" type="text" placeholder="Descripción tarea" col="0"></textarea>
                 </div>
-                <div class="tarea">
-                    <h2>Título 1</h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
+                    <input class="titulo__tarea" type="text" placeholder="Titulo tarea">
+                    <textarea class="descripcion__tarea" type="text" placeholder="Descripción tarea" col="0"></textarea>
                 </div>
-                <div class="tarea">
-                    <h2>Título 1</h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
+                    <input class="titulo__tarea" type="text" placeholder="Titulo tarea">
+                    <textarea class="descripcion__tarea" type="text" placeholder="Descripción tarea" col="0"></textarea>
                 </div>
-                <div class="tarea">
-                    <h2>Título 1</h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
+                    <input class="titulo__tarea" type="text" placeholder="Titulo tarea">
+                    <textarea class="descripcion__tarea" type="text" placeholder="Descripción tarea" col="0"></textarea>
                 </div>
+            </div>
+            <div class="add__tarea" onclick="agregarTarjeta(this)">
+                <button>Agregar tarjeta</button>
             </div>
         </div>        
         <div class="tablero__lista">
             <div class="titulo__lista">
-                <p>Section 2</p>
+                <input type="text" placeholder="En curso">
             </div>
 
             <div class="tareas" id="tareas2">
-                <div class="tarea">
-                    <h2>Título 2</h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
+                    <input class="titulo__tarea" type="text" placeholder="Titulo tarea">
+                    <textarea class="descripcion__tarea" type="text" placeholder="Descripción tarea" col="0"></textarea>
                 </div>
-                <div class="tarea">
-                    <h2>Título 2</h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
+                <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
+                    <input class="titulo__tarea" type="text" placeholder="Titulo tarea">
+                    <textarea class="descripcion__tarea" type="text" placeholder="Descripción tarea" col="0"></textarea>
                 </div>
-                <div class="tarea">
-                    <h2>Título 2</h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
-                <div class="tarea">
-                    <h2>Título 2</h2>
-                    <p>Lorem ipsum dolor sit amet.</p>
-                </div>
+            </div>
+            <div class="add__tarea" onclick="agregarTarjeta(this)">
+                <button>Agregar tarjeta</button>
             </div>
         </div>        
         <div class="tablero__lista">
             <div class="titulo__lista">
-                <p>Section 3</p>
+                <input type="text" placeholder="Para revisar">
             </div>
-        </div>        
+            <div class="tareas" id="tareas3">
+
+            </div>
+            <div class="add__tarea" onclick="agregarTarjeta(this)">
+                <button>Agregar tarjeta</button>
+            </div>
+        </div>
         <div class="tablero__lista">
             <div class="titulo__lista">
-                <p>Section 4</p>
+                <input type="text" placeholder="Tarea finalizada">
             </div>
-        </div>        
-        <div class="tablero__lista">
-            <div class="titulo__lista">
-                <p>Section 5</p>
+            <div class="tareas" id="tareas4">
+
             </div>
-        </div>        
+            <div class="add__tarea" onclick="agregarTarjeta(this)">
+                <button>Agregar tarjeta</button>
+            </div>
+        </div>
+        <div class="titulo__lista">
+            <p>Añadir lista</p>
+        </div>
     </section>
 
     <script src="js/Sortable.min.js"></script>
