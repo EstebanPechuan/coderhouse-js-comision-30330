@@ -25,13 +25,14 @@ let idDeTareas = 3
 let contenidoLocalStorage = JSON.parse(localStorage.getItem('json'))
 
 
-if (contenidoLocalStorage !== null) {
+if (contenidoLocalStorage !== null && contenidoLocalStorage.length > 0) {
     idDeTareas = contenidoLocalStorage[contenidoLocalStorage.length-1].id
 
     let tareasfromLocalStorage
     contenidoLocalStorage.forEach(item => {
         let tarea = `
             <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
+                <button class="close" onclick="eliminarTarjeta(${item.id}, this)">X</button>
                 <input class="titulo__tarea" type="text" placeholder="${item.titulo}" onchange="alert(this.value)">
                 <textarea class="descripcion__tarea" type="text" placeholder="${item.descripcion}" col="0"></textarea>
             </div>`
@@ -53,11 +54,12 @@ if (contenidoLocalStorage !== null) {
         }
     })
 } else {
+    localStorage.setItem('json', JSON.stringify(json))
     json.forEach(item => {
-        localStorage.setItem('json', JSON.stringify(json))
 
         let tarea = `
             <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
+                <button class="close" onclick="eliminarTarjeta(${item.id}, this)">X</button>
                 <input class="titulo__tarea" type="text" placeholder="${item.titulo}" onchange="alert(this.value)">
                 <textarea class="descripcion__tarea" type="text" placeholder="${item.descripcion}" col="0"></textarea>
             </div>`
@@ -99,9 +101,11 @@ areaDeTareas.forEach(item => {
 })
 
 const agregarTarjeta = (e) => {
+    idDeTareas++
     let contenedorTareas = e.previousElementSibling
     let tarea = `
     <div class="tarea">
+        <button class="close" onclick="eliminarTarjeta(${idDeTareas}, this)">X</button>
         <input id="input1" class="titulo__tarea" type="text" placeholder="Titulo tarea" onchange="actualizarInput(this.value)">
         <textarea id="input2" class="descripcion__tarea" type="text" placeholder="Descripción tarea" col="0" onchange="actualizarText(this.value)"></textarea>
         <input type="submit" class="btn-guardar" value="Guardar" onclick="guardarInfo(input1.value, input2.value, this)">
@@ -110,10 +114,10 @@ const agregarTarjeta = (e) => {
 }
 
 const guardarInfo = (i1, i2, e) => {
+    contenidoLocalStorage = JSON.parse(localStorage.getItem('json'))
     let boton = e
     let listaDeTareas = boton.parentElement.parentElement.id
     let tablero
-    idDeTareas++
     
 
     if (listaDeTareas === 'tareas1') {
@@ -179,3 +183,11 @@ const dropTarea = (e) => {
 const pushToLocalStorage = (contenidoLocalStorage) => {
     localStorage.setItem('json', JSON.stringify(contenidoLocalStorage))
 }
+
+const eliminarTarjeta = (id, e) => {
+    e.parentElement.remove()
+    
+    contenidoLocalStorage = contenidoLocalStorage.filter((item) => item.id !== id);
+    localStorage.setItem('json', JSON.stringify(contenidoLocalStorage))
+}
+
