@@ -19,15 +19,43 @@ const json = [
     }
 ]
 
+let idDeTareas = 3
+
 
 let contenidoLocalStorage = JSON.parse(localStorage.getItem('json'))
-let idDeTareas = contenidoLocalStorage[contenidoLocalStorage.length-1].id
-console.log(idDeTareas)
+
 
 if (contenidoLocalStorage !== null) {
-    console.log(contenidoLocalStorage);
+    idDeTareas = contenidoLocalStorage[contenidoLocalStorage.length-1].id
+
     let tareasfromLocalStorage
     contenidoLocalStorage.forEach(item => {
+        let tarea = `
+            <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
+                <input class="titulo__tarea" type="text" placeholder="${item.titulo}" onchange="alert(this.value)">
+                <textarea class="descripcion__tarea" type="text" placeholder="${item.descripcion}" col="0"></textarea>
+            </div>`
+    
+        if (item.estado === 'pendiente') {
+            tareasfromLocalStorage = document.querySelector('#tareas1').innerHTML += tarea
+            console.log('pendiente');
+
+        } else if (item.estado === 'curso') {
+            tareasfromLocalStorage = document.querySelector('#tareas2').innerHTML += tarea
+            console.log('curso');
+        } else if (item.estado === 'revisar') {
+            tareasfromLocalStorage = document.querySelector('#tareas3').innerHTML += tarea
+            console.log('revisar');
+
+        } else {
+            tareasfromLocalStorage = document.querySelector('#tareas4').innerHTML += tarea
+
+        }
+    })
+} else {
+    json.forEach(item => {
+        localStorage.setItem('json', JSON.stringify(json))
+
         let tarea = `
             <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
                 <input class="titulo__tarea" type="text" placeholder="${item.titulo}" onchange="alert(this.value)">
@@ -108,7 +136,6 @@ const guardarInfo = (i1, i2, e) => {
     
     contenidoLocalStorage.push(pushObjeto)
     pushToLocalStorage(contenidoLocalStorage)
-
     // Saco los id de los inputs hermanos al botón
     boton.parentElement.children[0].removeAttribute('id')
     boton.parentElement.children[1].removeAttribute('id')
