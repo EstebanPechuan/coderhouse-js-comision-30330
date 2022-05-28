@@ -4,91 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Weather APP</title>
+
+    <link rel="stylesheet" href="src/css/style.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet"> 
 </head>
 <body>
-
-    <h1>Weather APP</h1>
+    <header>
+        <h1>Weather APP</h1>
     
-    <form action="">
-        <input type="text">
-        <input id="submit" type="submit" value="Search">
-    </form>
+        <form action="" id="formCiudad">
+            <label id="submit" for="city">
+                <box-icon style="filter: invert();" name='search'></box-icon>
+            </label>
+            <input type="text" id="city" name="city" placeholder="">
+        </form>
+    </header>
 
-    <h2 id="ciudad"></h2>
+    <section class="containerCard">
+        <div class="card">
+            <h2 id="ciudad"></h2>
 
-    <div class="img-weather">
-        <img id="weatherImg" src="" alt="">
-    </div>
-
-    <p>Temp: <span id="temperatura"></span> °C</p>
-
-    <div class="minmax">
-        <div class="maxTemp">
-            Temp. máxima: <span id="max"></span> °C
-        </div>
-        
-        <div class="minTemp">
-            Temp. mínima: <span id="min"></span> °C
-        </div>
-    </div>    
-
-
-    <script>
-        const ciudad = document.querySelector('#ciudad')
-        const imagen = document.querySelector('#weatherImg')
-        const temperatura = document.querySelector('#temperatura')
-        const maxTemp = document.querySelector('#max')
-        const minTemp = document.querySelector('#min')
-
-        let inputCiudad
-        let inputCiudadValue
-        let input = document.querySelector('#submit')
-
-        input.addEventListener('click', (e) => {
-            e.preventDefault()
-            inputCiudad = e.target.previousElementSibling
-            inputCiudadValue = e.target.previousElementSibling.value
-
-            buscarClima()
-        })
-
-        const apiKey = "18962b97fd85aa4544014810f8b7e95f";
-
-        const buscarClima = () => {
-            let apiGeo = `http://api.openweathermap.org/geo/1.0/direct?q=${inputCiudadValue}&limit=5&appid=${apiKey}`;
+            <div class="img-info">
+                <div class="img-weather">
+                    <img id="weatherImg" src="" alt="">
+                </div>
             
-            window.fetch(apiGeo)
-                .then(lat_long => lat_long.json())
-                .then(lat_long => {
-                    let coord_lat = lat_long[0].lat;
-                    let coord_long = lat_long[0].lon;
+                <div class="info">
+                    <p><span id="temperatura"></span> °C</p>
+        
+                    <p id="cielo"></p>
+                </div>
+            </div>
+        
+            <div class="minmax">
+                <div class="maxTemp">
+                    Temp. máxima: <span id="max"></span> °C
+                </div>
+                
+                <div class="minTemp">
+                    Temp. mínima: <span id="min"></span> °C
+                </div>
+            </div>
+        </div>
+    </section>
 
-                    let api = `https://api.openweathermap.org/data/2.5/weather?lat=${coord_lat}&lon=${coord_long}&appid=${apiKey}`;
+    <!-- BoxIcons -->
+    <script src="https://unpkg.com/boxicons@2.1.2/dist/boxicons.js"></script>
 
-                    window.fetch(api)
-                        .then(data => data.json())
-                        .then(data => {
-                            console.log(data);
-                            let img = data.weather[0].icon
-                            let ciudadName = data.name
-                            let pais = data.sys.country
-                            let temp = Math.round((data.main.temp - 273.15) * 100) / 100
-                            let maxtemp = Math.round((data.main.temp_max - 273.15) * 100) / 100
-                            let mintemp = Math.round((data.main.temp_min - 273.15) * 100) / 100
-
-                            imagen.src = `http://openweathermap.org/img/wn/${img}@2x.png`
-                            ciudad.innerText = ciudadName  + ' - ' + pais
-                            temperatura.innerText = temp
-                            maxTemp.innerText = maxtemp
-                            minTemp.innerText = mintemp
-
-                        })
-                    })
-            inputCiudad.innerHTML = ''
-            inputCiudad.focus()
-        }
-    </script>
-    
+    <script src="./src/js/main.js"></script>
 </body>
 </html>
