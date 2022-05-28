@@ -6,8 +6,8 @@ const temperatura = document.querySelector('#temperatura')
 const maxTemp = document.querySelector('#max')
 const minTemp = document.querySelector('#min')
 const cielo = document.querySelector('#cielo')
-let estadoClima
 
+let estadoClima
 let inputCiudad
 let inputCiudadValue
 let form = document.querySelector('#formCiudad')
@@ -16,7 +16,7 @@ let input = document.querySelector('#city')
 let arrayFav = []
 let arryClimaTotal = []
 
-function buscarCiudad(e) {
+const buscarCiudad = (e) => {
     e.preventDefault()
     inputCiudad = document.querySelector('#city')
     inputCiudadValue = document.querySelector('#city').value
@@ -25,7 +25,6 @@ function buscarCiudad(e) {
 }
 
 form.addEventListener('submit', (e) => buscarCiudad(e))
-
 input.addEventListener('click', (e) => buscarCiudad(e))
 
 const apiKey = "18962b97fd85aa4544014810f8b7e95f";
@@ -45,11 +44,11 @@ const buscarClima = (city) => {
 
             let api = `https://api.openweathermap.org/data/2.5/weather?lat=${coord_lat}&lon=${coord_long}&appid=${apiKey}`;
 
+
             window.fetch(api)
                 .then(data => data.json())
                 .then(data => {
                     estadoClima = data.weather[0].description
-                    console.log(data);
                     
                     let actualWeather = {
                          favorito: false
@@ -81,21 +80,17 @@ const buscarClima = (city) => {
                             body.classList.add('clear-sky')
                         } else if (estadoClima === 'scattered clouds') {
                             body.classList.add('clouds')
-                        }  else if (estadoClima === 'few clouds') {
+                        }  else if (estadoClima === 'few clouds' || estadoClima === 'broken clouds') {
                             body.classList.add('few-clouds')
                         } else {
                             body.setAttribute('class', '')
                         }
                     }
-                    
+
                     changeBackground()
-                })
-                
+                })  
             })
         }
-
-
-
 
 const getLocal = JSON.parse(window.localStorage.getItem('lastWeather'))
 if ( getLocal ) {
