@@ -28,6 +28,7 @@ body {
   width: 100%;
   min-height: 100vh;
   background: rgb(162, 162, 162);
+  background-image: url('../img/clear\ sky.jpg') !important;
   background-position: top;
   background-size: cover;
   background-repeat: no-repeat;
@@ -106,7 +107,8 @@ header input:focus {
   align-items: center;
 }
 
-.card {
+.card,
+.loader {
   padding: 50px 80px;
   background: #0004;
   max-height: 600px;
@@ -164,18 +166,41 @@ header input:focus {
   gap: 50px;
 }
 
+.loader {
+  width: 500px;
+  height: 300px;
+}
+
+.loader span {
+  width: 100px;
+  aspect-ratio: 1/1;
+  border-radius: 50%;
+  border-top: 10px solid #FF5252;
+  border-right: 10px solid #FF5252;
+  animation: loading 1s linear infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: rotate(0);
+  }
+  to {
+    transform: rotate(359deg);
+  }  
+}
+
 .overcast-clouds {
-  background-image: url('../img/overcast\ clouds.jpg');
+  background-image: url('../img/overcast\ clouds.jpg') !important;
 }
 
 .clear-sky {
-  background-image: url('../img/clear\ sky.jpg');
+  background-image: url('../img/clear\ sky.jpg') !important;
 }
 
 .clouds {
-  background-image: url('../img/clouds.jpg');
+  background-image: url('../img/clouds.jpg') !important;
 }
 
 .few-clouds {
-  background-image: url('../img/few-clouds.jpg');
+  background-image: url('../img/few-clouds.jpg') !important;
 }
