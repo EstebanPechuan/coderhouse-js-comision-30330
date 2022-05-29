@@ -1,0 +1,5 @@
+[
+    {"id": 1,"titulo": "Tarea de muestra 1", "descripcion": "Texto de tarea", "estado": "pendiente"},
+    {"id": 2,"titulo": "Tarea de muestra 2", "descripcion": "Texto de tarea", "estado": "pendiente"},
+    {"id": 3,"titulo": "Tarea en curso 1", "descripcion": "Texto de tarea en curso", "estado": "curso"}
+]

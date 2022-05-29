@@ -10,13 +10,13 @@
 </head>
 <body>
     
-    <section class="tablero" id="tablero">
+    <section class="tablero" id="tablero" onchange="">
         <div class="tablero__lista">
             <div class="titulo__lista">
                 <input type="text" placeholder="Lista de tareas">
             </div>
 
-            <div class="tareas" id="tareas1">
+            <div class="tareas" id="pendiente">
                 
             </div>
             <div class="add__tarea" onclick="agregarTarjeta(this)">
@@ -28,7 +28,7 @@
                 <input type="text" placeholder="En curso">
             </div>
 
-            <div class="tareas" id="tareas2">
+            <div class="tareas" id="curso">
                 
             </div>
             <div class="add__tarea" onclick="agregarTarjeta(this)">
@@ -39,7 +39,7 @@
             <div class="titulo__lista">
                 <input type="text" placeholder="Para revisar">
             </div>
-            <div class="tareas" id="tareas3">
+            <div class="tareas" id="revisar">
 
             </div>
             <div class="add__tarea" onclick="agregarTarjeta(this)">
@@ -50,7 +50,7 @@
             <div class="titulo__lista">
                 <input type="text" placeholder="Tarea finalizada">
             </div>
-            <div class="tareas" id="tareas4">
+            <div class="tareas" id="terminada">
 
             </div>
             <div class="add__tarea" onclick="agregarTarjeta(this)">

@@ -1,88 +1,66 @@
-const json = [
-    {
-        'id': 1,
-        'titulo': 'Tarea de muestra 1',
-        'descripcion': 'Texto de tarea',
-        'estado': 'pendiente'
-    },
-    {
-        'id': 2,
-        'titulo': 'Tarea de muestra 2',
-        'descripcion': 'Texto de tarea',
-        'estado': 'pendiente'
-    },
-    {
-        'id': 3,
-        'titulo': 'Tarea en curso 1',
-        'descripcion': 'Texto de tarea en curso',
-        'estado': 'curso'
-    }
-]
+const tarjetasDeMuestra = () => {    
+    fetch('./js/tarjetasDeMuestra.json')
+        .then((data) => data.json())
+        .then((data) => {
+            localStorage.setItem('json', JSON.stringify(data))
+
+            data.forEach(item => {
+
+                let tarea = `
+                    <div class="tarea" ondragstart="dragTarea(${item.id}, this)" ondrop="dropTarea(${item.id}, this)">
+                        <button class="close" onclick="eliminarTarjeta(${item.id}, this)">X</button>
+                        <input class="titulo__tarea" type="text" placeholder="${item.titulo}" onchange="actualizarInput(${item.id}, this.value)">
+                        <textarea class="descripcion__tarea" type="text" placeholder="${item.descripcion}" onchange="actualizarDescripcion(${item.id}, this.value)" col="0"></textarea>
+                    </div>`
+            
+                if (item.estado === 'pendiente') {
+                    tareasfromLocalStorage = document.querySelector('#pendiente').innerHTML += tarea
+                } else if (item.estado === 'curso') {
+                    tareasfromLocalStorage = document.querySelector('#curso').innerHTML += tarea
+                } else if (item.estado === 'revisar') {
+                    tareasfromLocalStorage = document.querySelector('#revisar').innerHTML += tarea
+                } else {
+                    tareasfromLocalStorage = document.querySelector('#terminada').innerHTML += tarea
+                }
+            })
+        })
+}
 
 let idDeTareas = 3
 
-
 let contenidoLocalStorage = JSON.parse(localStorage.getItem('json'))
 
+let tareasfromLocalStorage
 
 if (contenidoLocalStorage !== null && contenidoLocalStorage.length > 0) {
     idDeTareas = contenidoLocalStorage[contenidoLocalStorage.length-1].id
 
-    let tareasfromLocalStorage
     contenidoLocalStorage.forEach(item => {
         let tarea = `
-            <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
+            <div class="tarea" ondragstart="dragTarea(${item.id}, this)" ondrop="dropTarea(${item.id}, this)">
                 <button class="close" onclick="eliminarTarjeta(${item.id}, this)">X</button>
-                <input class="titulo__tarea" type="text" placeholder="${item.titulo}" onchange="alert(this.value)">
-                <textarea class="descripcion__tarea" type="text" placeholder="${item.descripcion}" col="0"></textarea>
-            </div>`
+                <input class="titulo__tarea" type="text" placeholder="${item.titulo}" onchange="actualizarInput(${item.id}, this.value)">
+                <textarea class="descripcion__tarea" type="text" placeholder="${item.descripcion}" onchange="actualizarDescripcion(${item.id}, this.value)" col="0"></textarea>
+            </div>
+        `
     
         if (item.estado === 'pendiente') {
-            tareasfromLocalStorage = document.querySelector('#tareas1').innerHTML += tarea
-            console.log('pendiente');
-
+            tareasfromLocalStorage = document.querySelector('#pendiente').innerHTML += tarea
         } else if (item.estado === 'curso') {
-            tareasfromLocalStorage = document.querySelector('#tareas2').innerHTML += tarea
-            console.log('curso');
+            tareasfromLocalStorage = document.querySelector('#curso').innerHTML += tarea
         } else if (item.estado === 'revisar') {
-            tareasfromLocalStorage = document.querySelector('#tareas3').innerHTML += tarea
-            console.log('revisar');
-
+            tareasfromLocalStorage = document.querySelector('#revisar').innerHTML += tarea
         } else {
-            tareasfromLocalStorage = document.querySelector('#tareas4').innerHTML += tarea
-
+            tareasfromLocalStorage = document.querySelector('#terminada').innerHTML += tarea
         }
     })
 } else {
-    localStorage.setItem('json', JSON.stringify(json))
-    json.forEach(item => {
-
-        let tarea = `
-            <div class="tarea" ondragstart="dragTarea(this)" ondrop="dropTarea(this)">
-                <button class="close" onclick="eliminarTarjeta(${item.id}, this)">X</button>
-                <input class="titulo__tarea" type="text" placeholder="${item.titulo}" onchange="alert(this.value)">
-                <textarea class="descripcion__tarea" type="text" placeholder="${item.descripcion}" col="0"></textarea>
-            </div>`
-    
-        if (item.estado === 'pendiente') {
-            tareasfromLocalStorage = document.querySelector('#tareas1').innerHTML += tarea
-            console.log('pendiente');
-
-        } else if (item.estado === 'curso') {
-            tareasfromLocalStorage = document.querySelector('#tareas2').innerHTML += tarea
-            console.log('curso');
-        } else if (item.estado === 'revisar') {
-            tareasfromLocalStorage = document.querySelector('#tareas3').innerHTML += tarea
-            console.log('revisar');
-
-        } else {
-            tareasfromLocalStorage = document.querySelector('#tareas4').innerHTML += tarea
-
-        }
-    })
+    tarjetasDeMuestra()
 }
 
+
 const tablero = document.querySelector('#tablero')
+
 Sortable.create(tablero, {
     group: {
         name: 'listas'
@@ -100,84 +78,68 @@ areaDeTareas.forEach(item => {
     })
 })
 
+
 const agregarTarjeta = (e) => {
     idDeTareas++
     let contenedorTareas = e.previousElementSibling
     let tarea = `
-    <div class="tarea">
-        <button class="close" onclick="eliminarTarjeta(${idDeTareas}, this)">X</button>
-        <input id="input1" class="titulo__tarea" type="text" placeholder="Titulo tarea" onchange="actualizarInput(this.value)">
-        <textarea id="input2" class="descripcion__tarea" type="text" placeholder="Descripción tarea" col="0" onchange="actualizarText(this.value)"></textarea>
-        <input type="submit" class="btn-guardar" value="Guardar" onclick="guardarInfo(input1.value, input2.value, this)">
-    </div>`
+        <div class="tarea">
+            <button class="close" onclick="eliminarTarjeta(${idDeTareas}, this)">X</button>
+            <input id="input1" class="titulo__tarea" type="text" placeholder="Titulo tarea" onchange="actualizarInput(${idDeTareas}, this.value)">
+            <textarea id="input2" class="descripcion__tarea" type="text" placeholder="Descripción tarea" col="0" onchange="actualizarText(${idDeTareas}, this.value)"></textarea>
+            <input type="submit" class="btn-guardar" value="Guardar" onclick="guardarInfo(input1.value, input2.value, this)">
+        </div>
+    `
+    
     contenedorTareas.innerHTML += tarea
+
+    const inputFocus = document.querySelector(`#input1`)
+    inputFocus.focus()
 }
 
 const guardarInfo = (i1, i2, e) => {
     contenidoLocalStorage = JSON.parse(localStorage.getItem('json'))
     let boton = e
     let listaDeTareas = boton.parentElement.parentElement.id
-    let tablero
-    
-
-    if (listaDeTareas === 'tareas1') {
-        tablero = 'pendiente'
-    } else if (listaDeTareas === 'tareas2') {
-        tablero = 'curso'
-    } else if (listaDeTareas === 'tareas3') {
-        tablero = 'revisar'
-    } else {
-        tablero = 'finalizado'
-    }
-
     
     let pushObjeto = {
-        'id': idDeTareas,
-        'titulo': i1,
-        'descripcion': i2,
-        'estado': tablero
+        id: idDeTareas,
+        titulo: i1,
+        descripcion: i2,
+        estado: listaDeTareas
     }
     
     contenidoLocalStorage.push(pushObjeto)
     pushToLocalStorage(contenidoLocalStorage)
-    // Saco los id de los inputs hermanos al botón
+
+    // Saco los id de los inputs de la tarjeta recién creada
     boton.parentElement.children[0].removeAttribute('id')
     boton.parentElement.children[1].removeAttribute('id')
     
     boton.remove()
 }
 
-const actualizarInput = (inputValue) => {
-    // console.log(inputValue);
+const actualizarInput = (id, value) => {
+    let itemEnJson = contenidoLocalStorage.filter(item => item.id == id)
+    
+    itemEnJson[0].titulo = value
+    pushToLocalStorage(contenidoLocalStorage)
 }
 
-const actualizarText = (textValue) => {
-    // console.log(textValue);
+const actualizarDescripcion = (id, value) => {
+    let itemEnJson = contenidoLocalStorage.filter(item => item.id == id)
+    
+    itemEnJson[0].descripcion = value
+    pushToLocalStorage(contenidoLocalStorage)
 }
 
 // Guardar elementos en localstorage una vez que se dropea una tarea en alguna lista
-let fromLista
+const dropTarea = (id, element) => {
+    let listaDeTareas = element.parentElement.getAttribute('id')
+    let itemEnJson = contenidoLocalStorage.filter(item => item.id == id)
 
-const dragTarea = (e) => {
-    fromLista = e.parentElement.getAttribute('id')
-}
-
-let arrContenedor = []
-let arrLista = []
-
-const dropTarea = (e) => {
-    let listaDeTareas = e.parentElement.getAttribute('id')
-    let itemsEnContenedor = document.querySelectorAll(`#${listaDeTareas} .tarea`)
-    let itemsFromLista = document.querySelectorAll(`#${fromLista} .tarea`)
-    // console.log(e);
-
-    let tituloTarea = e.children[0].placeholder
-
-    // console.log(json.includes(tituloTarea));
-    // console.log(typeof(tituloTarea));
-
-    localStorage.setItem(listaDeTareas, JSON.stringify(itemsEnContenedor))
-    localStorage.setItem(fromLista, JSON.stringify(itemsFromLista))
+    itemEnJson[0].estado = listaDeTareas
+    pushToLocalStorage(contenidoLocalStorage)
 }
 
 const pushToLocalStorage = (contenidoLocalStorage) => {
