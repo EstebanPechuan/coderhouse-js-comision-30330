@@ -126,6 +126,7 @@ var getLocal = JSON.parse(window.localStorage.getItem('lastWeather'))
 
 if ( getLocal ) {
     arryClimaTotal = getLocal
+    
     let ultimaCiudadGuardada = arryClimaTotal[arryClimaTotal.length-1].ciudad
     console.log(ultimaCiudadGuardada);
     buscarClima(ultimaCiudadGuardada)
